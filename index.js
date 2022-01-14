@@ -9,7 +9,7 @@ var StreamSource = {
   ICECAST: 'ICECAST'
 };
 
-function getStationInfo(url, callback, method) {
+function getStationInfo(url, method) {
   var methodHandler = undefined;
 
   switch (method) {
@@ -37,13 +37,7 @@ function getStationInfo(url, callback, method) {
   // Resolve the promise from the async function and return the station with the callback
   // We shouldnt mix callbacks and promises but for backwards compatability I am breaking
   // the law here......
-  return findStation(url)
-    .then(station => {
-      return callback(null, station);
-    })
-    .catch(err => {
-      return callback(err);
-    });
+  return findStation(url);
 
   /*
   @params -> string: url of given stream
